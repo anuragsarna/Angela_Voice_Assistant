@@ -1,14 +1,11 @@
-from pickle import NONE
-import pyttsx3 #pip install pyttsx3
-import speech_recognition as sr #pip install speechRecognition
+
+import pyttsx3 
+import speech_recognition as sr 
 import datetime
-import wikipedia
 import webbrowser   
-import openai      #pip install openai
+import openai     
 import os
 from config import apikey
-import requests
-import json
 
 chatStr = ""
 
@@ -27,22 +24,12 @@ def chat(query):
         frequency_penalty=0,
         presence_penalty=0
     )
-    # todo: Wrap this inside of a  try catch block
+   
     speak(response["choices"][0]["text"])
     chatStr += f"{response['choices'][0]['text']}\n"
     return response["choices"][0]["text"]
 
 
-def news(post):
-    url = f"https://newsapi.org/v2/everything?q={post}&from=2023-06-07&sortBy=publishedAt&apiKey=47c8ade9cb4b47ecb7d44c75da04fec5"
-    r =requests.get(url)
-    # speak(r.text)
-    print(r.text)
-    # news = json.loads(r.text)
-    # for articles in news["articles"]:
-    #     print(article["title"])
-    #     print(article["description"])
-    #     print("---------------------------------------------------------")
 
 def ai(prompt):
     openai.api_key = apikey
@@ -57,13 +44,12 @@ def ai(prompt):
         frequency_penalty=0,
         presence_penalty=0
     )
-    # todo: Wrap this inside of a  try catch block
+    
     # print(response["choices"][0]["text"])
     text += response["choices"][0]["text"]
     if not os.path.exists("Openai"):
         os.mkdir("Openai")
 
-    # with open(f"Openai/prompt- {random.randint(1, 2343434356)}", "w") as f:
     with open(f"Openai/{''.join(prompt.split('intelligence')[1:]).strip() }.txt", "w") as f:
         f.write(text)
 
@@ -138,9 +124,6 @@ if __name__ == "__main__":
 
         elif "reset chat".lower() in query.lower():
             chatStr = ""
-
-        elif "news".lower() in query.lower():
-            news(post=query)
         
         else:
             print("Chatting...")

@@ -1,0 +1,15 @@
+OpenAI response for Prompt: angela using open ai please make a list of top 10 coding languages in the world 
+ *************************
+
+
+
+1. Java
+2. C 
+3. Python
+4. C++
+5. JavaScript
+6. Go
+7. PHP
+8. Swift
+9. C#
+10. Ruby
